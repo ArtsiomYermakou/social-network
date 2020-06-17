@@ -11,7 +11,6 @@ export type TypeMyPosts = {
     message: string
     likesCount: number
 }
-
 export type ProfilePageType = {
     posts: Array<TypeMyPosts>
 }
@@ -19,7 +18,6 @@ export type DialogPageType = {
     dialogs: Array<TypeDialogs>
     messages: Array<TypeMessages>
 }
-
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
