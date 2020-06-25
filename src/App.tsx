@@ -10,8 +10,6 @@ import {RootStateType} from "./redux/state";
 type PropType = {
     state: RootStateType
     addPost: (postMessage: string) => void
-    // profilePage: RootStateType
-    // newPostText: string
     updateNewPostText: (newText: string) => void
 }
 
