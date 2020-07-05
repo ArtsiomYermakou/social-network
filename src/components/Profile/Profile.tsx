@@ -1,13 +1,11 @@
 import React from 'react';
-import s from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {DialogPageType, ProfilePageType} from "../../redux/state";
+import {ProfilePageType} from "../../redux/state";
 
 type PropType = {
     profilePage: ProfilePageType
     addPost: (postMessage: string) => void
-    // newPostText: string
     updateNewPostText: (newText: string) => void
 }
 
