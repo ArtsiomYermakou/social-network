@@ -1,17 +1,13 @@
-import React, {ChangeEvent, RefObject} from 'react';
+import React, {RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {
-    addPostActionCreator,
-    TypeMyPosts,
-    changeNewTextActionCreator,
-    ProfileActionType
-} from "../../../redux/state";
+import {addPostActionCreator, changeNewTextActionCreator} from "../../../redux/profile-reducer";
+import {ActionType, TypeMyPosts} from "../../../redux/state";
 
 type PropType = {
     posts: Array<TypeMyPosts>
     newPostText: string
-    dispatch: (action: ProfileActionType) => void
+    dispatch: (action: ActionType) => void
 }
 
 const MyPosts = (props: PropType) => {
@@ -24,7 +20,8 @@ const MyPosts = (props: PropType) => {
     let newPostElement:newPostType = React.createRef();
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+        let action = addPostActionCreator()
+        props.dispatch(action);
     }
 
     let onPostChange = () => {
@@ -37,7 +34,7 @@ const MyPosts = (props: PropType) => {
     //     let text = e.currentTarget.value;
     //     props.dispatch(changeNewTextActionCreator(text));
     // }
-
+debugger
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
@@ -47,7 +44,7 @@ const MyPosts = (props: PropType) => {
                               value={props.newPostText} />
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={addPost}>Добавить пост</button>
                 </div>
             </div>
             <div className={s.posts}>
