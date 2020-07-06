@@ -1,15 +1,19 @@
-import React, {RefObject} from 'react';
+import React, {ChangeEvent, RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {TypeMyPosts} from "../../../redux/state";
+import {
+    addPostActionCreator,
+    TypeMyPosts,
+    changeNewTextActionCreator,
+    ProfileActionType
+} from "../../../redux/state";
 
 
 
 type PropType = {
     posts: Array<TypeMyPosts>
-    addPost: (postMessage: string) => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ProfileActionType) => void
 }
 
 const MyPosts = (props: PropType) => {
@@ -22,21 +26,26 @@ const MyPosts = (props: PropType) => {
     let newPostElement:newPostType = React.createRef();
 
     let addPost = () => {
-        props.addPost("");
+        props.dispatch(addPostActionCreator());
     }
 
     let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.updateNewPostText(text);
+        let action = changeNewTextActionCreator(text);
+        props.dispatch(action);
     }
+
+    // let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    //     let text = e.currentTarget.value;
+    //     props.dispatch(changeNewTextActionCreator(text));
+    // }
 
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange}
-                              ref={newPostElement}
+                    <textarea onChange={onPostChange} ref={newPostElement}
                               value={props.newPostText} />
                 </div>
                 <div>
