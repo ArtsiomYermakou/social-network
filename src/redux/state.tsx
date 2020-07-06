@@ -1,3 +1,8 @@
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
+const SEND_MESSAGE = "SEND_MESSAGE";
 
 type TypeMessages = {
     id: number
@@ -19,6 +24,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: Array<TypeDialogs>
     messages: Array<TypeMessages>
+    newMessageBody: string
 }
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -42,8 +48,7 @@ export type StoreType = {
 }
 
 
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
 
 
 let store:StoreType = {
@@ -72,7 +77,8 @@ let store:StoreType = {
                 {id: 3, message: "Yo"},
                 {id: 4, message: "Yo"},
                 {id: 5, message: "Yo"},
-            ]
+            ],
+            newMessageBody: ""
         },
         // sidebar: {}
     },
@@ -101,25 +107,49 @@ let store:StoreType = {
         } else if (action.type === UPDATE_NEW_POST_TEXT){
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY){
+            this._state.dialogsPage.newMessageBody = action.body
+            this._callSubscriber(this._state);
+        }else if (action.type === SEND_MESSAGE){
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = "";
+            this._state.dialogsPage.messages.push({id: 6, message: body});
+            this._callSubscriber(this._state);
         }
     }
 }
 
+export type ProfileActionType =
+    AddPostActionCreatorType |
+    ChangeNewTextActionCreatorType |
+    SendMessageCreatorType |
+    UpdateNewMessageBodyCreatorType;
+
+
 export type AddPostActionCreatorType = {
     type: typeof ADD_POST
 }
-
 export type ChangeNewTextActionCreatorType = {
     type: typeof UPDATE_NEW_POST_TEXT
     newText: string
 }
-
-export type ProfileActionType = AddPostActionCreatorType | ChangeNewTextActionCreatorType
+export type SendMessageCreatorType = {
+    type: typeof SEND_MESSAGE
+}
+export type UpdateNewMessageBodyCreatorType = {
+    type: typeof UPDATE_NEW_MESSAGE_BODY
+    body: string
+}
 
 export const addPostActionCreator = (): AddPostActionCreatorType => ({ type: ADD_POST })
-
 export const changeNewTextActionCreator = (text:string): ChangeNewTextActionCreatorType =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})
+
+///// Добавление сообщения.
+
+export const sendMessageCreator = ():SendMessageCreatorType => ({ type: SEND_MESSAGE })
+export const updateNewMessageBodyCreator = (body:string): UpdateNewMessageBodyCreatorType =>
+    ({  type: UPDATE_NEW_MESSAGE_BODY, body: body})
 
 
 

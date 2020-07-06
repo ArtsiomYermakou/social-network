@@ -8,8 +8,6 @@ import {
     ProfileActionType
 } from "../../../redux/state";
 
-
-
 type PropType = {
     posts: Array<TypeMyPosts>
     newPostText: string
