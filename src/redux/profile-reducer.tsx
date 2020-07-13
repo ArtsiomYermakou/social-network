@@ -13,12 +13,6 @@ export type ChangeNewTextActionCreatorType = {
     newText: string
 }
 
-
-// let initialState = {
-//     posts: [] as Array<TypeMyPosts>,
-//     newPostText: ''
-// }
-
 type StateProfile = typeof initialState
 
 

@@ -1,12 +1,11 @@
 import React, {RefObject} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ActionType, TypeMyPosts} from "../../../redux/store";
+import {TypeMyPosts} from "../../../redux/store";
 
 type PropType = {
     posts: Array<TypeMyPosts>
     newPostText: string
-    dispatch: (action: ActionType) => void
     addPost:()=> void
     updateNewPostText: (text: string)=> void
 }
