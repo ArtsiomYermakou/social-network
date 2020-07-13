@@ -1,4 +1,4 @@
-import {ActionType, TypeMyPosts} from "./state";
+import {ActionType} from "./store";
 
 
 const ADD_POST = "ADD-POST";
@@ -14,13 +14,23 @@ export type ChangeNewTextActionCreatorType = {
 }
 
 
-let initialState = {
-    posts: [] as Array<TypeMyPosts>,
-    newPostText: ''
-}
+// let initialState = {
+//     posts: [] as Array<TypeMyPosts>,
+//     newPostText: ''
+// }
 
 type StateProfile = typeof initialState
 
+
+let initialState = {
+        posts: [
+            {id: 1, message: "Hi, how are you?", likesCount: 12},
+            {id: 2, message: "It's my first", likesCount: 11},
+            {id: 3, message: "BLAbla", likesCount: 423},
+            {id: 4, message: "Dada", likesCount: 21},
+        ],
+        newPostText: ""
+    };
 
 const profileReducer = (state: StateProfile = initialState, action:ActionType): StateProfile => {
 
@@ -47,7 +57,7 @@ const profileReducer = (state: StateProfile = initialState, action:ActionType): 
 }
 
 export const addPostActionCreator = (): AddPostActionCreatorType => ({ type: ADD_POST })
-export const changeNewTextActionCreator = (text:string): ChangeNewTextActionCreatorType =>
+export const updateNewPostTextActionCreator = (text:string): ChangeNewTextActionCreatorType =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
 export default profileReducer;
