@@ -8,23 +8,7 @@ import {connect} from "react-redux";
     // store: any
     // dispatch: (action: ActionType) => void
 // }
-// const DialogsContainer = (props: PropType) => {
-//
-//     return <StoreContext.Consumer>
-//         {(store: any) => {
-//             let onSendMessageClick = () => {
-//                 store.dispatch(sendMessageCreator());
-//             }
-//             let onNewMessageChange = (body: any) => {
-//                 store.dispatch(updateNewMessageBodyCreator(body));
-//             }
-//             return <Dialogs updateNewMessageBody={onNewMessageChange}
-//                             sendMessage={onSendMessageClick}
-//                             dialogsPage={store.getState().dialogsPage}/>
-//         }
-//         }
-//     </StoreContext.Consumer>
-// }
+
 
 let mapStateToProps = (state:any) => {
     return {
