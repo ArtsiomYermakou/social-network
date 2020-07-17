@@ -7,13 +7,14 @@ import {Route} from "react-router-dom"
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
-type PropsType = {
-    // dispatch: (action: ActionType) => void
-    // store: any
-    // state: RootStateType
-}
 
-const App = (props: PropsType) => {
+// type PropsType = {
+//     dispatch: (action: ActionType) => void
+//     store: any
+//     state: RootStateType
+// }
+
+const App = () => {
     return (
         <div className="app-wrapper">
             <Header/>
