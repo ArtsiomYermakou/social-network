@@ -7,6 +7,7 @@ import dialogsReducer, {
     UpdateNewMessageBodyCreatorType
 } from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import {FollowActionCreatorType, SetUsersCreatorType, UnfollowActionCreatorType} from "./users-reducer";
 
 // const ADD_POST = "ADD-POST";
 // const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -52,8 +53,14 @@ export type RootStateType = {
 //     newText: string
 // }
 
-export type  ActionType = AddPostActionCreatorType | ChangeNewTextActionCreatorType
-|  SendMessageCreatorType | UpdateNewMessageBodyCreatorType
+export type  ActionType =
+    AddPostActionCreatorType |
+    ChangeNewTextActionCreatorType |
+    SendMessageCreatorType |
+    UpdateNewMessageBodyCreatorType |
+    FollowActionCreatorType |
+    UnfollowActionCreatorType |
+    SetUsersCreatorType;
 
 export type StoreType = {
     _state: RootStateType

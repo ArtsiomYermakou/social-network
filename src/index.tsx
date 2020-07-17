@@ -21,7 +21,6 @@ import {Provider} from "react-redux";
 
 
 // let rerenderEntireTree = (state: RootStateType) => {
-//
 // }
 // rerenderEntireTree(store.getState());
 
