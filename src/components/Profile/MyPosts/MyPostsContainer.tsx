@@ -19,7 +19,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch:any) => {
     return {
-        updateNewPostText: (text:any)=> {
+        updateNewPostText: (text:string)=> {
             let action = updateNewPostTextActionCreator(text);
             dispatch(action);
         },

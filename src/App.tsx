@@ -8,11 +8,6 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 
 
-// type PropsType = {
-//     dispatch: (action: ActionType) => void
-//     store: any
-//     state: RootStateType
-// }
 
 const App = () => {
     return (

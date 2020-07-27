@@ -20,7 +20,7 @@ let initialState = {
         posts: [
             {id: 1, message: "Hi, how are you?", likesCount: 12},
             {id: 2, message: "It's my first", likesCount: 11},
-            {id: 3, message: "BLAbla", likesCount: 423},
+            {id: 3, message: "Русские слова", likesCount: 423},
             {id: 4, message: "Dada", likesCount: 21},
         ],
         newPostText: ""

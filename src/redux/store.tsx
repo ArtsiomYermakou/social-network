@@ -9,14 +9,6 @@ import dialogsReducer, {
 import sidebarReducer from "./sidebar-reducer";
 import {FollowActionCreatorType, SetUsersCreatorType, UnfollowActionCreatorType} from "./users-reducer";
 
-// const ADD_POST = "ADD-POST";
-// const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-//
-// const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY";
-// const SEND_MESSAGE = "SEND_MESSAGE";
-
-
-
 type TypeMessages = {
     id: number
     message: string
@@ -43,15 +35,9 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: object
-    // likesCount: string
 }
 
-/////
 
-// export type ActionType = {
-//     type: string
-//     newText: string
-// }
 
 export type  ActionType =
     AddPostActionCreatorType |
@@ -121,62 +107,7 @@ let store:StoreType = {
         this._state.dialogsPage = dialogsReducer( this._state.dialogsPage, action);
         this._state.sidebar = sidebarReducer( this._state.sidebar, action);
         this._callSubscriber(this._state);
-
-        // this._callSubscriber(this._state);
-        //
-        // if(action.type === ADD_POST){
-        //     let newPost = {
-        //         id: 5,
-        //         message: this._state.profilePage.newPostText,
-        //         likesCount: 0
-        //     };
-        //     this._state.profilePage.posts.push(newPost);
-        //     this._state.profilePage.newPostText = "";
-        //     this._callSubscriber(this._state);
-        // } else if (action.type === UPDATE_NEW_POST_TEXT){
-        //     this._state.profilePage.newPostText = action.newText;
-        //     this._callSubscriber(this._state);
-        // } else if (action.type === UPDATE_NEW_MESSAGE_BODY){
-        //     this._state.dialogsPage.newMessageBody = action.body
-        //     this._callSubscriber(this._state);
-        // }else if (action.type === SEND_MESSAGE){
-        //     let body = this._state.dialogsPage.newMessageBody;
-        //     this._state.dialogsPage.newMessageBody = "";
-        //     this._state.dialogsPage.messages.push({id: 6, message: body});
-        //
-        // }
     }
 }
 
-
-
-
-// export type AddPostActionCreatorType = {
-//     type: typeof ADD_POST
-// }
-// export type ChangeNewTextActionCreatorType = {
-//     type: typeof UPDATE_NEW_POST_TEXT
-//     newText: string
-// }
-// export type SendMessageCreatorType = {
-//     type: typeof SEND_MESSAGE
-// }
-// export type UpdateNewMessageBodyCreatorType = {
-//     type: typeof UPDATE_NEW_MESSAGE_BODY
-//     body: string
-// }
-
-// export const addPostActionCreator = (): AddPostActionCreatorType => ({ type: ADD_POST })
-// export const changeNewTextActionCreator = (text:string): ChangeNewTextActionCreatorType =>
-//     ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
-///// Добавление сообщения.
-
-// export const sendMessageCreator = ():SendMessageCreatorType => ({ type: SEND_MESSAGE })
-// export const updateNewMessageBodyCreator = (body:string): UpdateNewMessageBodyCreatorType =>
-//     ({  type: UPDATE_NEW_MESSAGE_BODY, body: body})
-
-
-
 export default store;
-// window.store = store;

@@ -73,6 +73,6 @@ const usersReducer = (state: StateProfile = initialState, action: ActionType): S
 
 export const followAC = (userId: number): FollowActionCreatorType => ({type: FOLLOW, userId})
 export const unFollowAC = (userId: number): UnfollowActionCreatorType => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users: any): SetUsersCreatorType => ({type: SET_USERS, users})
+export const setUsersAC = (users: Array<UsersType>): SetUsersCreatorType => ({type: SET_USERS, users})
 
 export default usersReducer;
