@@ -2,17 +2,15 @@ import React from 'react';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-type PropType = {
-    // profilePage: ProfilePageType
-    // dispatch: (action: ActionType) => void
-    // store: any
+type PropsType = {
+
 }
 
 
-const Profile = (props: PropType) => {
+const Profile = (props: any) => {
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer
                 // store={props.store}
                 // dispatch={props.dispatch}

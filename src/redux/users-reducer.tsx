@@ -33,7 +33,7 @@ export type setIsFetchingCreatorType = {
     isFetching: boolean
 }
 
-type StateProfile = typeof initialState
+export type StateProfile = typeof initialState
 
 type LocationUserType = {
     city: string
@@ -95,11 +95,11 @@ const usersReducer = (state: StateProfile = initialState, action: ActionType): S
     }
 }
 
-export const followAC = (userId: number): FollowActionCreatorType => ({type: FOLLOW, userId})
-export const unFollowAC = (userId: number): UnfollowActionCreatorType => ({type: UNFOLLOW, userId})
-export const setUsersAC = (users: Array<UsersType>): SetUsersCreatorType => ({type: SET_USERS, users})
-export const setCurrentPageAC = (currentPage: number): SetCurrentPageCreatorType => ({type: SET_CURRENT_PAGE, currentPage})
-export const setUsersTotalCountAC = (totalUsersCount: number): setUsersTotalCountCreatorType  =>({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
-export const toggleIsFetchingAC = (isFetching: boolean): setIsFetchingCreatorType   =>({type: TOGGLE_IS_FETCHING, isFetching})
+export const follow = (userId: number): FollowActionCreatorType => ({type: FOLLOW, userId})
+export const unFollow = (userId: number): UnfollowActionCreatorType => ({type: UNFOLLOW, userId})
+export const setUsers = (users: Array<UsersType>): SetUsersCreatorType => ({type: SET_USERS, users})
+export const setCurrentPage = (currentPage: number): SetCurrentPageCreatorType => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCount = (totalUsersCount: number): setUsersTotalCountCreatorType  =>({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
+export const toggleIsFetching = (isFetching: boolean): setIsFetchingCreatorType   =>({type: TOGGLE_IS_FETCHING, isFetching})
 
 export default usersReducer;

@@ -2,6 +2,7 @@ import React, {MouseEvent} from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/businessperson-computer-icons-avatar-clip-art-avatar.jpg";
 import {UsersType} from "../../redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 type PropsType = {
     totalUsersCount: number
@@ -26,16 +27,20 @@ let Users = (props: PropsType) => {
         <div>
             {pages.map(p => {
                 return <span className={props.currentPage === p ? styles.selectedPage : ""}
-                             onClick={(e: MouseEvent) => {props.onPageChanged(p)}}>{p}</span>
+                             onClick={(e: MouseEvent) => {
+                                 props.onPageChanged(p)
+                             }}>{p}</span>
             })}
         </div>
         {
             props.users.map((u: any) => <div key={u.id}>
                     <span>
                         <div>
+                            <NavLink to={"/profile/" + u.id}>
                             <img src={u.photos.small != null
                                 ? u.photos.small
                                 : userPhoto} className={styles.userPhoto} alt="avatar"/>
+                        </NavLink>
                         </div>
                         <div>
                             {u.followed

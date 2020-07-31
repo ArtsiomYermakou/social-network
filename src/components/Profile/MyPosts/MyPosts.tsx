@@ -13,6 +13,7 @@ type PropType = {
 const MyPosts = (props: PropType) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message}
+                                                   key={p.id}
                                                    likesCount={p.likesCount}/>)
 
     type newPostType = RefObject<any>;
