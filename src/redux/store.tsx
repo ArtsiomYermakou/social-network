@@ -7,7 +7,12 @@ import dialogsReducer, {
     UpdateNewMessageBodyCreatorType
 } from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import {FollowActionCreatorType, SetUsersCreatorType, UnfollowActionCreatorType} from "./users-reducer";
+import {
+    FollowActionCreatorType,
+    SetCurrentPageCreatorType,
+    SetUsersCreatorType, setUsersTotalCountCreatorType,
+    UnfollowActionCreatorType
+} from "./users-reducer";
 
 type TypeMessages = {
     id: number
@@ -46,7 +51,9 @@ export type  ActionType =
     UpdateNewMessageBodyCreatorType |
     FollowActionCreatorType |
     UnfollowActionCreatorType |
-    SetUsersCreatorType;
+    SetUsersCreatorType |
+    SetCurrentPageCreatorType |
+    setUsersTotalCountCreatorType;
 
 export type StoreType = {
     _state: RootStateType

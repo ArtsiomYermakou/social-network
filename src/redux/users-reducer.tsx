@@ -4,6 +4,8 @@ import {ActionType} from "./store";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
 export type FollowActionCreatorType = {
     type: typeof FOLLOW
@@ -15,7 +17,15 @@ export type UnfollowActionCreatorType = {
 }
 export type SetUsersCreatorType = {
     type: typeof SET_USERS
-    users: any
+    users: Array<UsersType>
+}
+export type SetCurrentPageCreatorType = {
+    type: typeof SET_CURRENT_PAGE
+    currentPage: number
+}
+export type setUsersTotalCountCreatorType = {
+    type: typeof SET_TOTAL_USERS_COUNT
+    count: number
 }
 
 type StateProfile = typeof initialState
@@ -37,8 +47,10 @@ type UsersType = {
 
 let initialState = {
     users: [] as Array<UsersType>,
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 };
-
 
 
 const usersReducer = (state: StateProfile = initialState, action: ActionType): StateProfile => {
@@ -65,7 +77,11 @@ const usersReducer = (state: StateProfile = initialState, action: ActionType): S
                 })
             }
         case SET_USERS:
-            return { ...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+        case SET_TOTAL_USERS_COUNT:
+            return {...state, totalUsersCount: action.count}
         default:
             return state;
     }
@@ -74,5 +90,7 @@ const usersReducer = (state: StateProfile = initialState, action: ActionType): S
 export const followAC = (userId: number): FollowActionCreatorType => ({type: FOLLOW, userId})
 export const unFollowAC = (userId: number): UnfollowActionCreatorType => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users: Array<UsersType>): SetUsersCreatorType => ({type: SET_USERS, users})
+export const setCurrentPageAC = (currentPage: number): SetCurrentPageCreatorType => ({type: SET_CURRENT_PAGE, currentPage})
+export const setUsersTotalCountAC = (totalUsersCount: number): setUsersTotalCountCreatorType  =>({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 
 export default usersReducer;
