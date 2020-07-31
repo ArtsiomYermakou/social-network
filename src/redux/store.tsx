@@ -9,7 +9,7 @@ import dialogsReducer, {
 import sidebarReducer from "./sidebar-reducer";
 import {
     FollowActionCreatorType,
-    SetCurrentPageCreatorType,
+    SetCurrentPageCreatorType, setIsFetchingCreatorType,
     SetUsersCreatorType, setUsersTotalCountCreatorType,
     UnfollowActionCreatorType
 } from "./users-reducer";
@@ -53,7 +53,8 @@ export type  ActionType =
     UnfollowActionCreatorType |
     SetUsersCreatorType |
     SetCurrentPageCreatorType |
-    setUsersTotalCountCreatorType;
+    setUsersTotalCountCreatorType |
+    setIsFetchingCreatorType;
 
 export type StoreType = {
     _state: RootStateType

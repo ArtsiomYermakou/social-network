@@ -6,6 +6,7 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
+const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 
 export type FollowActionCreatorType = {
     type: typeof FOLLOW
@@ -27,6 +28,10 @@ export type setUsersTotalCountCreatorType = {
     type: typeof SET_TOTAL_USERS_COUNT
     count: number
 }
+export type setIsFetchingCreatorType = {
+    type: typeof TOGGLE_IS_FETCHING
+    isFetching: boolean
+}
 
 type StateProfile = typeof initialState
 
@@ -35,7 +40,7 @@ type LocationUserType = {
     country: string
 }
 
-type UsersType = {
+export type UsersType = {
     id: number
     photoUrl: string
     followed: boolean
@@ -49,7 +54,8 @@ let initialState = {
     users: [] as Array<UsersType>,
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 };
 
 
@@ -82,6 +88,8 @@ const usersReducer = (state: StateProfile = initialState, action: ActionType): S
             return {...state, currentPage: action.currentPage}
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.count}
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state;
     }
@@ -92,5 +100,6 @@ export const unFollowAC = (userId: number): UnfollowActionCreatorType => ({type:
 export const setUsersAC = (users: Array<UsersType>): SetUsersCreatorType => ({type: SET_USERS, users})
 export const setCurrentPageAC = (currentPage: number): SetCurrentPageCreatorType => ({type: SET_CURRENT_PAGE, currentPage})
 export const setUsersTotalCountAC = (totalUsersCount: number): setUsersTotalCountCreatorType  =>({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
+export const toggleIsFetchingAC = (isFetching: boolean): setIsFetchingCreatorType   =>({type: TOGGLE_IS_FETCHING, isFetching})
 
 export default usersReducer;

@@ -6,7 +6,7 @@ import {DialogPageType} from "../../redux/store";
 
 type PropType = {
     updateNewMessageBody: (onNewMessageChange: any) => void
-    sendMessage: any
+    sendMessage: () => void
     dialogsPage: DialogPageType
 }
 
