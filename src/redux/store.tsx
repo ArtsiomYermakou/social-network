@@ -42,9 +42,6 @@ export type RootStateType = {
     dialogsPage: DialogPageType
     sidebar: object
 }
-
-
-
 export type  ActionType =
     AddPostActionCreatorType |
     ChangeNewTextActionCreatorType |
