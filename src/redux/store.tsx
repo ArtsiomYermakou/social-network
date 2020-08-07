@@ -13,6 +13,7 @@ import {
     SetUsersCreatorType, setUsersTotalCountCreatorType,
     UnfollowActionCreatorType
 } from "./users-reducer";
+import {setUserDataActionCreatorType} from "./auth-reducer";
 
 type TypeMessages = {
     id: number
@@ -53,7 +54,8 @@ export type  ActionType =
     SetCurrentPageCreatorType |
     setUsersTotalCountCreatorType |
     setIsFetchingCreatorType |
-    SetUserProfileCreatorType;
+    SetUserProfileCreatorType |
+    setUserDataActionCreatorType;
 
 export type StoreType = {
     _state: RootStateType
