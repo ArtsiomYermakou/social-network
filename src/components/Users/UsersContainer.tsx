@@ -1,16 +1,34 @@
 import React from "react";
 import {connect} from "react-redux";
 import {
-    followSuccess,
     setCurrentPage,
-    unFollowSuccess,
+    unfollow,
     toggleFollowingProgress,
-    getUsers
+    getUsers, follow, UsersType
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
+import {AppStateType} from "../../redux/redux-store";
 
-class UsersContainer extends React.Component<any> {
+type MapStatePropsType = {
+    users: Array<UsersType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: Array<any>
+}
+
+type MapDispatchPropsType = {
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setCurrentPage: (currentPage: number) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+}
+
+
+class UsersContainer extends React.Component<MapStatePropsType & MapDispatchPropsType> {
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
@@ -28,14 +46,14 @@ class UsersContainer extends React.Component<any> {
                    onPageChanged={this.onPageChanged}
                    users={this.props.users}
                    follow={this.props.follow}
-                   unFollow={this.props.unFollow}
+                   unfollow={this.props.unfollow}
                    followingInProgress={this.props.followingInProgress}
             />
         </>
     }
 }
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -48,4 +66,4 @@ let mapStateToProps = (state: any) => {
 
 
 export default connect(mapStateToProps,
-    { follow: followSuccess, unFollow: unFollowSuccess, setCurrentPage, toggleFollowingProgress, getUsers})(UsersContainer);
+    {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers})(UsersContainer);
