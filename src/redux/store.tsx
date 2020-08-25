@@ -1,6 +1,6 @@
 import profileReducer, {
     AddPostActionCreatorType,
-    ChangeNewTextActionCreatorType, SetUserProfileCreatorType
+    ChangeNewTextActionCreatorType, SetStatusCreatorType, SetUserProfileCreatorType
 } from "./profile-reducer";
 import dialogsReducer, {
     SendMessageCreatorType,
@@ -31,7 +31,8 @@ export type TypeMyPosts = {
 export type ProfilePageType = {
     posts: Array<TypeMyPosts>
     newPostText: string
-    profile: any
+    profile: any,
+    status: string
 }
 export type DialogPageType = {
     dialogs: Array<TypeDialogs>
@@ -56,7 +57,8 @@ export type  ActionType =
     setIsFetchingCreatorType |
     SetUserProfileCreatorType |
     setUserDataActionCreatorType |
-    setIsFollowingCreatorType;
+    setIsFollowingCreatorType |
+    SetStatusCreatorType;
 
 export type StoreType = {
     _state: RootStateType
@@ -78,7 +80,9 @@ let store:StoreType = {
                 {id: 4, message: "Dada", likesCount: 21},
             ],
             newPostText: "Artem",
-            profile: null
+            profile: null,
+            status: ""
+
         },
         dialogsPage: {
             dialogs: [
