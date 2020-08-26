@@ -1,11 +1,7 @@
 import profileReducer, {
-    AddPostActionCreatorType,
-    ChangeNewTextActionCreatorType, SetStatusCreatorType, SetUserProfileCreatorType
+    AddPostActionCreatorType, SetStatusCreatorType, SetUserProfileCreatorType
 } from "./profile-reducer";
-import dialogsReducer, {
-    SendMessageCreatorType,
-    UpdateNewMessageBodyCreatorType
-} from "./dialogs-reducer";
+import dialogsReducer, {SendMessageCreatorType} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {
     FollowActionCreatorType,
@@ -30,14 +26,13 @@ export type TypeMyPosts = {
 }
 export type ProfilePageType = {
     posts: Array<TypeMyPosts>
-    newPostText: string
+    // newPostText: string
     profile: any,
     status: string
 }
 export type DialogPageType = {
     dialogs: Array<TypeDialogs>
     messages: Array<TypeMessages>
-    newMessageBody: string
 }
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -46,9 +41,7 @@ export type RootStateType = {
 }
 export type  ActionType =
     AddPostActionCreatorType |
-    ChangeNewTextActionCreatorType |
     SendMessageCreatorType |
-    UpdateNewMessageBodyCreatorType |
     FollowActionCreatorType |
     UnfollowActionCreatorType |
     SetUsersCreatorType |
@@ -79,7 +72,7 @@ let store:StoreType = {
                 {id: 3, message: "BLAbla", likesCount: 423},
                 {id: 4, message: "Dada", likesCount: 21},
             ],
-            newPostText: "Artem",
+            // newPostText: "Artem",
             profile: null,
             status: ""
 
@@ -99,8 +92,7 @@ let store:StoreType = {
                 {id: 3, message: "Yo"},
                 {id: 4, message: "Yo"},
                 {id: 5, message: "Yo"},
-            ],
-            newMessageBody: ""
+            ]
         },
         sidebar: {}
     },
