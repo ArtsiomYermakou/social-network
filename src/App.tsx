@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/Preloader";
+import {AppStateType} from "./redux/redux-store";
 
 
 class App extends React.Component <any> {
@@ -45,7 +46,7 @@ class App extends React.Component <any> {
     }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 

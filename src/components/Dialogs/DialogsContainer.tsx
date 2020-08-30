@@ -4,6 +4,7 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import {AppStateType} from "../../redux/redux-store";
 
 
 // type MapStateToPropsType = {
@@ -16,7 +17,7 @@ import {compose} from "redux";
 // }
 
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         dialogsPage: state.dialogsPage
     }
