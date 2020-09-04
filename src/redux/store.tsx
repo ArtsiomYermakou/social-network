@@ -1,5 +1,5 @@
 import profileReducer, {
-    AddPostActionCreatorType, SetStatusCreatorType, SetUserProfileCreatorType
+    AddPostActionCreatorType, DeletePostCreatorType, SetStatusCreatorType, SetUserProfileCreatorType
 } from "./profile-reducer";
 import dialogsReducer, {SendMessageCreatorType} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
@@ -53,7 +53,8 @@ export type  ActionType =
     setUserDataActionCreatorType |
     setIsFollowingCreatorType |
     SetStatusCreatorType |
-    setInitializedCreatorType;
+    setInitializedCreatorType |
+    DeletePostCreatorType;
 
 export type StoreType = {
     _state: RootStateType

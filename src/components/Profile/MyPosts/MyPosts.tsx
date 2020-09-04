@@ -15,7 +15,10 @@ type PropType = {
 
 const MyPosts = React.memo((props: PropType) => {
 
-        let postsElements = props.posts.map(p => <Post message={p.message}
+        let postsElements =
+            [...props.posts]
+                .reverse()
+                .map(p => <Post message={p.message}
                                                        key={p.id}
                                                        likesCount={p.likesCount}/>)
 
