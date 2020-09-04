@@ -13,30 +13,31 @@ type PropType = {
     updateNewPostText?: (text: any) => void
 }
 
-const MyPosts = (props: PropType) => {
+const MyPosts = React.memo((props: PropType) => {
 
-    let postsElements = props.posts.map(p => <Post message={p.message}
-                                                   key={p.id}
-                                                   likesCount={p.likesCount}/>)
+        let postsElements = props.posts.map(p => <Post message={p.message}
+                                                       key={p.id}
+                                                       likesCount={p.likesCount}/>)
 
-    type newPostType = RefObject<any>;
+        type newPostType = RefObject<any>;
 
-    let newPostElement: newPostType = React.createRef();
+        let newPostElement: newPostType = React.createRef();
 
-    let onAddPost = (values: any) => {
-        props.addPost(values.newPostText);
-    }
+        let onAddPost = (values: any) => {
+            props.addPost(values.newPostText);
+        }
 
-    return (
-        <div className={s.postsBlock}>
-            <h3>My posts</h3>
-            <AddNewPostFormRedux onSubmit={onAddPost}/>
-            <div className={s.posts}>
-                {postsElements}
+        return (
+            <div className={s.postsBlock}>
+                <h3>My posts</h3>
+                <AddNewPostFormRedux onSubmit={onAddPost}/>
+                <div className={s.posts}>
+                    {postsElements}
+                </div>
             </div>
-        </div>
-    )
-}
+        )
+    }
+);
 
 const maxLength10 = maxLengthCreator(10);
 
@@ -46,7 +47,7 @@ let AddNewPostForm = (props: any) => {
             <div>
                 <Field name="newPostText"
                        component={Textarea}
-                       validate={ [required, maxLength10]} placeholder={"Post message"} />
+                       validate={[required, maxLength10]} placeholder={"Post message"}/>
             </div>
             <div>
                 <button>Add post</button>
