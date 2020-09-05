@@ -1,8 +1,9 @@
 import {ActionType} from "./store";
 import {authAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
+import {Dispatch} from "redux";
 
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_USER_DATA = "samurai-network/auth/SET_USER_DATA";
 
 export type setUserDataActionCreatorType = {
     type: typeof SET_USER_DATA
@@ -45,36 +46,31 @@ export const setAuthUserDataAC = (userId: null | string, email: null | string, l
     payload: {userId, email, login, isAuth}
 })
 
-export const getAuthUserData = () => (dispatch: any) => {
-    return authAPI.me()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data;
-                dispatch(setAuthUserDataAC(id, email, login, true));
-            }
-        });
+export const getAuthUserData = () => async (dispatch: any) => {
+    let response = await authAPI.me();
+    if (response.data.resultCode === 0) {
+        let {id, email, login} = response.data.data;
+        dispatch(setAuthUserDataAC(id, email, login, true));
+    }
+
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
 
-    authAPI.login(email, password, rememberMe)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserData());
-            } else {
-                let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
-                dispatch(stopSubmit("login", {_error: message}));
-            }
-        });
+    let response = await authAPI.login(email, password, rememberMe);
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData());
+    } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+        dispatch(stopSubmit("login", {_error: message}));
+    }
 }
 
-export const logout = () => (dispatch: any) => {
-    authAPI.logout()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setAuthUserDataAC(null, null, null, false));
-            }
-        });
+export const logout = () => async (dispatch: any) => {
+    let response = await authAPI.logout();
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserDataAC(null, null, null, false));
+    }
 }
 
 export default authReducer;

@@ -1,8 +1,10 @@
-import React, {MouseEvent} from "react";
+import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/businessperson-computer-icons-avatar-clip-art-avatar.jpg";
 import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import Paginator from "../common/Paginator/Paginator";
+
 
 type PropsType = {
     totalUsersCount: number
@@ -16,23 +18,9 @@ type PropsType = {
 }
 
 let Users = (props: PropsType) => {
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
     return <div>
-        <div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p ? styles.selectedPage : ""}
-                             onClick={(e: MouseEvent) => {
-                                 props.onPageChanged(p)
-                             }}>{p}</span>
-            })}
-        </div>
+        <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
+                   onPageChanged={props.onPageChanged}/>
         {
             props.users.map((u: any) => <div key={u.id}>
                     <span>

@@ -27,7 +27,6 @@ export type TypeMyPosts = {
 }
 export type ProfilePageType = {
     posts: Array<TypeMyPosts>
-    // newPostText: string
     profile: any,
     status: string
 }
@@ -64,8 +63,6 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
 }
 
-
-
 let store:StoreType = {
     _state: {
         profilePage: {
@@ -75,7 +72,6 @@ let store:StoreType = {
                 {id: 3, message: "BLAbla", likesCount: 423},
                 {id: 4, message: "Dada", likesCount: 21},
             ],
-            // newPostText: "Artem",
             profile: null,
             status: ""
 
