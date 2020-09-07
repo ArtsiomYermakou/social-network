@@ -20,7 +20,7 @@ type PropsType = {
 let Users = (props: PropsType) => {
     return <div>
         <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
-                   onPageChanged={props.onPageChanged}/>
+                   onPageChanged={props.onPageChanged} />
         {
             props.users.map((u: any) => <div key={u.id}>
                     <span>
