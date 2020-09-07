@@ -1,5 +1,9 @@
 import profileReducer, {
-    AddPostActionCreatorType, DeletePostCreatorType, SetStatusCreatorType, SetUserProfileCreatorType
+    AddPostActionCreatorType,
+    DeletePostCreatorType,
+    SavePhotoSuccessCreatorType,
+    SetStatusCreatorType,
+    SetUserProfileCreatorType
 } from "./profile-reducer";
 import dialogsReducer, {SendMessageCreatorType} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
@@ -53,7 +57,8 @@ export type  ActionType =
     setIsFollowingCreatorType |
     SetStatusCreatorType |
     setInitializedCreatorType |
-    DeletePostCreatorType;
+    DeletePostCreatorType |
+    SavePhotoSuccessCreatorType;
 
 export type StoreType = {
     _state: RootStateType
@@ -72,8 +77,11 @@ let store:StoreType = {
                 {id: 3, message: "BLAbla", likesCount: 423},
                 {id: 4, message: "Dada", likesCount: 21},
             ],
-            profile: null,
+            profile: {
+                photos: {}
+            },
             status: ""
+
 
         },
         dialogsPage: {
