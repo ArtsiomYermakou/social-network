@@ -19,8 +19,8 @@ const MyPosts = React.memo((props: PropType) => {
             [...props.posts]
                 .reverse()
                 .map(p => <Post message={p.message}
-                                                       key={p.id}
-                                                       likesCount={p.likesCount}/>)
+                                key={p.id}
+                                likesCount={p.likesCount}/>)
 
         type newPostType = RefObject<any>;
 
