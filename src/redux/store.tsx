@@ -13,7 +13,7 @@ import {
     SetUsersCreatorType, setUsersTotalCountCreatorType,
     UnfollowActionCreatorType
 } from "./users-reducer";
-import {setUserDataActionCreatorType} from "./auth-reducer";
+import {getCaptchaUrlSuccessActionCreatorType, setUserDataActionCreatorType} from "./auth-reducer";
 import {setInitializedCreatorType} from "./app-reducer";
 
 type TypeMessages = {
@@ -58,7 +58,8 @@ export type  ActionType =
     SetStatusCreatorType |
     setInitializedCreatorType |
     DeletePostCreatorType |
-    SavePhotoSuccessCreatorType;
+    SavePhotoSuccessCreatorType |
+    getCaptchaUrlSuccessActionCreatorType;
 
 export type StoreType = {
     _state: RootStateType
