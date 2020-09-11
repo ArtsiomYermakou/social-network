@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
-import {HashRouter, Route, withRouter} from "react-router-dom"
+import {BrowserRouter, HashRouter, Route, withRouter, Switch, Redirect} from "react-router-dom"
 import UsersContainer from "./components/Users/UsersContainer";
 
 import {connect, Provider} from "react-redux";
@@ -21,9 +21,15 @@ const LoginPage = React.lazy(() => import("./components/Login/Login"))
 
 
 class App extends React.Component <any> {
-
+    catchAllUnhandledErrors = (reason: any) => {
+        alert("Some Error");
+    }
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
     }
 
     render() {
@@ -36,17 +42,24 @@ class App extends React.Component <any> {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <React.Suspense fallback={<Preloader/>}>
-                        <Route path="/dialogs"
-                               render={() => <DialogsContainer/>}/>
+                        <Switch>
+                            <Route exact path='/'
+                                   render={() =>  <Redirect to={"/profile"} />} />
 
-                        <Route path='/profile/:userId?'
-                               render={() => <ProfileContainer/>}/>
+                            <Route path="/dialogs"
+                                   render={() => <DialogsContainer/>}/>
 
-                        <Route path="/users"
-                               render={() => <UsersContainer/>}/>
+                            <Route path='/profile/:userId?'
+                                   render={() => <ProfileContainer/>}/>
 
-                        <Route path="/login"
-                               render={() => <LoginPage/>}/>
+                            <Route path="/users"
+                                   render={() => <UsersContainer/>}/>
+
+                            <Route path="/login"
+                                   render={() => <LoginPage/>}/>
+                            <Route path="*"
+                                   render={() => <div>404 NOT FOUND</div>}/>
+                        </Switch>
                     </React.Suspense>
                 </div>
             </div>
@@ -61,11 +74,11 @@ const mapStateToProps = (state: AppStateType) => ({
 const AppContainer = compose<any>(withRouter, connect(mapStateToProps, {initializeApp}))(App);
 
 let SamuraiJsApp = (props: any) => {
-    return <HashRouter>
+    return <BrowserRouter>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </HashRouter>
+    </BrowserRouter>
 }
 
 export default SamuraiJsApp;
