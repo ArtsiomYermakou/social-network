@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/businessperson-computer-icons-avatar-clip-art-avatar.jpg";
 import {NavLink} from "react-router-dom";
@@ -17,12 +17,12 @@ type PropsType = {
     followingInProgress: any
 }
 
-let Users = (props: PropsType) => {
+let Users: FC<PropsType> = ({currentPage, totalUsersCount, pageSize, onPageChanged, users, ...props }) => {
     return <div>
-        <Paginator totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} currentPage={props.currentPage}
-                   onPageChanged={props.onPageChanged} />
+        <Paginator totalItemsCount={totalUsersCount} pageSize={pageSize} currentPage={currentPage}
+                   onPageChanged={onPageChanged} />
         {
-            props.users.map((u: any) => <div key={u.id}>
+            users.map((u: any) => <div key={u.id}>
                     <span>
                         <div>
                             <NavLink to={"/profile/" + u.id}>
