@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter, HashRouter, Route, withRouter, Switch, Redirect} from "react-router-dom"
+import {Route, withRouter, Switch, Redirect, HashRouter} from "react-router-dom"
 import UsersContainer from "./components/Users/UsersContainer";
 
 import {connect, Provider} from "react-redux";
@@ -10,10 +10,6 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/preloader/Preloader";
 import store, {AppStateType} from "./redux/redux-store";
-
-//import DialogsContainer from "./components/Dialogs/DialogsContainer";
-// import ProfileContainer from "./components/Profile/ProfileContainer";
-// import LoginPage from "./components/Login/Login";
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
@@ -74,11 +70,11 @@ const mapStateToProps = (state: AppStateType) => ({
 const AppContainer = compose<any>(withRouter, connect(mapStateToProps, {initializeApp}))(App);
 
 let SamuraiJsApp = (props: any) => {
-    return <BrowserRouter>
+    return <HashRouter>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
 
 export default SamuraiJsApp;

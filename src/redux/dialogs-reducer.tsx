@@ -1,10 +1,19 @@
 import {ActionType} from "./store";
+
 const SEND_MESSAGE = "SEND_MESSAGE";
 
-
-export type SendMessageCreatorType = {
+export type SendMessageCreatorActionType = {
     type: typeof SEND_MESSAGE
     newMessageBody: string
+}
+
+type DialogType = {
+    id: number
+    name: string
+}
+type MessageType = {
+    id: number
+    message: string
 }
 
 let initialState = {
@@ -15,20 +24,19 @@ let initialState = {
         {id: 4, name: "Sasha"},
         {id: 5, name: "Victor"},
         {id: 6, name: "Valery"},
-    ],
+    ] as Array<DialogType>,
     messages: [
         {id: 1, message: "Hi"},
         {id: 2, message: "How is your It?"},
         {id: 3, message: "Yo"},
         {id: 4, message: "Yo"},
         {id: 5, message: "Yo"},
-    ]
+    ] as Array<MessageType>
 }
 
-type StateDialogs = typeof initialState
+type initialStateType = typeof initialState;
 
-
-const dialogsReducer = (state: StateDialogs = initialState, action: ActionType): StateDialogs => {
+const dialogsReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case SEND_MESSAGE:
             let body = action.newMessageBody;
@@ -41,6 +49,6 @@ const dialogsReducer = (state: StateDialogs = initialState, action: ActionType):
     }
 }
 
-export const sendMessageCreator = (newMessageBody: string):SendMessageCreatorType => ({ type: SEND_MESSAGE, newMessageBody})
+export const sendMessageCreator = (newMessageBody: string): SendMessageCreatorActionType => ({ type: SEND_MESSAGE, newMessageBody})
 
 export default dialogsReducer;

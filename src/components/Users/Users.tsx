@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/businessperson-computer-icons-avatar-clip-art-avatar.jpg";
-import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import Paginator from "../common/Paginator/Paginator";
+import {UserType} from "../../types/types";
 
 
 type PropsType = {
@@ -11,7 +11,7 @@ type PropsType = {
     pageSize: number
     currentPage: number
     onPageChanged: (pageNumber: number) => void
-    users: Array<UsersType>
+    users: Array<UserType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     followingInProgress: any

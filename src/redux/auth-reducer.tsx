@@ -5,42 +5,42 @@ import {stopSubmit} from "redux-form";
 const SET_USER_DATA = "samurai-network/auth/SET_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "samurai-network/auth/GET_CAPTCHA_URL_SUCCESS";
 
-export type setUserDataActionCreatorType = {
+type SetUserDataActionPayloadType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
+
+export type SetUserDataActionCreatorType = {
     type: typeof SET_USER_DATA
-    payload: DataType
+    payload: SetUserDataActionPayloadType
 }
-export type getCaptchaUrlSuccessActionCreatorType = {
+
+export type GetCaptchaUrlSuccessActionCreatorType = {
     type: typeof GET_CAPTCHA_URL_SUCCESS
-    payload: CaptchaUrlType
+    payload: {captchaUrl: string}
 }
 
-export type StateProfile = typeof initialState
-
-export type CaptchaUrlType = {
-    captchaUrl: any
-}
-
-type DataType = {
-    userId: null | string
+type InitialStateType = {
+    userId: null | number
     email: null | string
     login: null | string
     isAuth: boolean
-    captchaUrl?: string | null
+    captchaUrl: string | null
 }
 
-let initialState: DataType = {
-    userId: null,
-    email: null,
-    login: null,
+let initialState: InitialStateType = {
+    userId: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false,
-    captchaUrl: null
+    captchaUrl: null as string | null
 };
 
 
-const authReducer = (state: StateProfile = initialState, action: ActionType): StateProfile => {
-
+const authReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
-
         case SET_USER_DATA:
         case GET_CAPTCHA_URL_SUCCESS:
             return {
@@ -52,11 +52,11 @@ const authReducer = (state: StateProfile = initialState, action: ActionType): St
     }
 }
 
-export const setAuthUserDataAC = (userId: null | string, email: null | string, login: null | string, isAuth: boolean): setUserDataActionCreatorType => ({
+export const setAuthUserDataAC = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): SetUserDataActionCreatorType => ({
     type: SET_USER_DATA,
     payload: {userId, email, login, isAuth}
 })
-export const getCaptchaUrlSuccess = (captchaUrl: any): getCaptchaUrlSuccessActionCreatorType => ({
+export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessActionCreatorType => ({
     type: GET_CAPTCHA_URL_SUCCESS,
     payload: {captchaUrl}
 })

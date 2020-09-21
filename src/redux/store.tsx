@@ -5,16 +5,16 @@ import profileReducer, {
     SetStatusCreatorType,
     SetUserProfileCreatorType
 } from "./profile-reducer";
-import dialogsReducer, {SendMessageCreatorType} from "./dialogs-reducer";
+import dialogsReducer, {SendMessageCreatorActionType} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import {
     FollowActionCreatorType,
-    SetCurrentPageCreatorType, setIsFetchingCreatorType, setIsFollowingCreatorType,
-    SetUsersCreatorType, setUsersTotalCountCreatorType,
+    SetCurrentPageCreatorType, SetIsFetchingCreatorType, SetIsFollowingCreatorType,
+    SetUsersCreatorType, SetUsersTotalCountCreatorType,
     UnfollowActionCreatorType
 } from "./users-reducer";
-import {getCaptchaUrlSuccessActionCreatorType, setUserDataActionCreatorType} from "./auth-reducer";
-import {setInitializedCreatorType} from "./app-reducer";
+import {GetCaptchaUrlSuccessActionCreatorType, SetUserDataActionCreatorType} from "./auth-reducer";
+import {SetInitializedCreatorType} from "./app-reducer";
 
 type TypeMessages = {
     id: number
@@ -32,7 +32,8 @@ export type TypeMyPosts = {
 export type ProfilePageType = {
     posts: Array<TypeMyPosts>
     profile: any,
-    status: string
+    status: string,
+    newPostText: string
 }
 export type DialogPageType = {
     dialogs: Array<TypeDialogs>
@@ -45,21 +46,21 @@ export type RootStateType = {
 }
 export type  ActionType =
     AddPostActionCreatorType |
-    SendMessageCreatorType |
+    SendMessageCreatorActionType |
     FollowActionCreatorType |
     UnfollowActionCreatorType |
     SetUsersCreatorType |
     SetCurrentPageCreatorType |
-    setUsersTotalCountCreatorType |
-    setIsFetchingCreatorType |
+    SetUsersTotalCountCreatorType |
+    SetIsFetchingCreatorType |
     SetUserProfileCreatorType |
-    setUserDataActionCreatorType |
-    setIsFollowingCreatorType |
+    SetUserDataActionCreatorType |
+    SetIsFollowingCreatorType |
     SetStatusCreatorType |
-    setInitializedCreatorType |
+    SetInitializedCreatorType |
     DeletePostCreatorType |
     SavePhotoSuccessCreatorType |
-    getCaptchaUrlSuccessActionCreatorType;
+    GetCaptchaUrlSuccessActionCreatorType;
 
 export type StoreType = {
     _state: RootStateType
@@ -69,7 +70,7 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
 }
 
-let store:StoreType = {
+let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -81,8 +82,8 @@ let store:StoreType = {
             profile: {
                 photos: {}
             },
-            status: ""
-
+            status: "",
+            newPostText: ""
 
         },
         dialogsPage: {
