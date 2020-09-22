@@ -1,50 +1,45 @@
-import React from "react";
-import styles from "../FormsControls/FormsControls.module.css"
-import {Field} from "redux-form";
+import React from "react"
+import styles from "./FormsControls.module.css"
+import {FieldValidatorType} from "../../../utils/validators/validators"
+import {Field, WrappedFieldProps} from "redux-form"
+import {WrappedFieldMetaProps} from 'redux-form/lib/Field'
 
-const FormControl = (props: any) => {
-    const hasError = props.meta.touched && props.meta.error;
+type FormControlPropsType = {
+    meta: WrappedFieldMetaProps
+}
+
+const FormControl: React.FC<FormControlPropsType> = ({meta: {touched, error}, children}) => {
+    const hasError = touched && error;
     return (
         <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
             <div>
-                {props.child}
+                {children}
             </div>
-            {hasError && <span className={styles.error}>{props.meta.error}</span>}
+            {hasError && <span>{error}</span>}
         </div>
     )
 }
 
-export const Textarea = (props: any) => {
-    const hasError = props.meta.touched && props.meta.error;
-    return (
-        <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
-            <div>
-                <textarea {...props.input} {...props} />
-            </div>
-            {hasError && <span className={styles.error}>{props.meta.error}</span>}
-        </div>
-    )
+export const Textarea: React.FC<WrappedFieldProps> = (props) => {
+    const {input, meta, ...restProps} = props;
+    return <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>
 }
 
-export const Input = (props: any) => {
-    const hasError = props.meta.touched && props.meta.error;
-    return (
-        <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
-            <div>
-                <input {...props.input} {...props} />
-            </div>
-            {hasError && <span className={styles.error}>{props.meta.error}</span>}
-        </div>
-    )
+export const Input: React.FC<WrappedFieldProps> = (props) => {
+    const {input, meta, ...restProps} = props;
+    return <FormControl {...props}><input {...input} {...restProps} /></FormControl>
 }
 
-export const createField = (placeholder: string | null, name: string, validators: any, component: any, props = {}, text = "") => (
-    <div>
-        <Field placeholder={placeholder}
-               name={name}
+export function createField<FormKeysType extends string>(placeholder: string | undefined,
+                                                         name: FormKeysType,
+                                                         validators: Array<FieldValidatorType>,
+                                                         component: React.FC<WrappedFieldProps>,
+                                                         props = {}, text = "") {
+    return <div>
+        <Field placeholder={placeholder} name={name}
                validate={validators}
                component={component}
                {...props}
         /> {text}
     </div>
-)
+}
