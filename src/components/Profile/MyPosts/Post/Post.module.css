@@ -1,5 +1,6 @@
 .item {
-    color: greenyellow;
+    color: black;
+    margin: 20px;
 }
 .item img {
     width: 50px;

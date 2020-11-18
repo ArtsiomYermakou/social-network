@@ -14,44 +14,44 @@ const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 export type FollowActionCreatorType = {
-    type: typeof FOLLOW
-    userId: number
+	type: typeof FOLLOW
+	userId: number
 }
 export type UnfollowActionCreatorType = {
-    type: typeof UNFOLLOW
-    userId: number
+	type: typeof UNFOLLOW
+	userId: number
 }
 export type SetUsersCreatorType = {
-    type: typeof SET_USERS
-    users: Array<UserType>
+	type: typeof SET_USERS
+	users: Array<UserType>
 }
 export type SetCurrentPageCreatorType = {
-    type: typeof SET_CURRENT_PAGE
-    currentPage: number
+	type: typeof SET_CURRENT_PAGE
+	currentPage: number
 }
 export type SetUsersTotalCountCreatorType = {
-    type: typeof SET_TOTAL_USERS_COUNT
-    count: number
+	type: typeof SET_TOTAL_USERS_COUNT
+	count: number
 }
 export type SetIsFetchingCreatorType = {
-    type: typeof TOGGLE_IS_FETCHING
-    isFetching: boolean
+	type: typeof TOGGLE_IS_FETCHING
+	isFetching: boolean
 }
 export type SetIsFollowingCreatorType = {
-    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
-    isFetching: boolean
-    userId: number
+	type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
+	isFetching: boolean
+	userId: number
 }
 
 export type initialStateType = typeof initialState
 
 let initialState = {
-    users: [] as Array<UserType>,
-    pageSize: 10,
-    totalUsersCount: 0,
-    currentPage: 1,
-    isFetching: true,
-    followingInProgress: [] as Array<number>, //Array of users ids
+	users: [] as Array<UserType>,
+	pageSize: 10,
+	totalUsersCount: 0,
+	currentPage: 1,
+	isFetching: true,
+	followingInProgress: [] as Array<number>, //Array of users ids
 };
 
 const usersReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {

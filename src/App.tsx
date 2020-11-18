@@ -18,7 +18,7 @@ const LoginPage = React.lazy(() => import("./components/Login/Login"))
 
 class App extends React.Component <any> {
     catchAllUnhandledErrors = (reason: any) => {
-        alert("Some Error");
+        // alert("Some Error");
     }
     componentDidMount() {
         this.props.initializeApp();
@@ -49,7 +49,7 @@ class App extends React.Component <any> {
                                    render={() => <ProfileContainer/>}/>
 
                             <Route path="/users"
-                                   render={() => <UsersContainer pageTitle={"Samurais"}/>}/>
+                                   render={() => <UsersContainer pageTitle={"Samurai"}/>}/>
 
                             <Route path="/login"
                                    render={() => <LoginPage/>}/>
